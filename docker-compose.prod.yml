@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  webapp:
+    image: ghcr.io/kevinwang15/simple-tracker-webapp:master
+    ports:
+      - "3000:3000"
+    environment:
+      - APP_URL=${APP_URL}
+    depends_on:
+      - tracker
+
+  tracker:
+    image: ghcr.io/kevinwang15/simple-tracker-tracker:master
+    restart: unless-stopped

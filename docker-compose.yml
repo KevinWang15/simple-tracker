@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - APP_URL=${APP_URL}
+    depends_on:
+      - tracker
+
+  tracker:
+    build:
+      context: ./tracker
+      dockerfile: Dockerfile
+    restart: unless-stopped
